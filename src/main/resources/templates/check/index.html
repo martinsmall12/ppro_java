@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>Login</title>
+</head>
+
+<body>
+<div th:replace="layout :: site-menu"></div>
+
+<h2>Please login</h2>
+<form method="post" th:object="${checkForm}">
+    <label for="name">Jméno:</label>
+    <input type="text" id="name" name="name" th:value="*{name}" />
+    <span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Nevalidní jméno</span>
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" th:value="*{price}" />
+    <span class="formError" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Invalid price</span>
+
+    <label for="period">period:</label>
+    <input type="text" id="period" name="period" th:value="*{period}" />
+    <span class="formError" th:if="${#fields.hasErrors('period')}" th:errors="*{period}">Invalid period</span>
+
+    <label for="consequences">consequences:</label>
+    <textarea type="text" id="consequences" name="consequences" th:value="*{consequences}" >
+    </textarea>
+    <span class="formError" th:if="${#fields.hasErrors('consequences')}" th:errors="*{consequences}">Invalid consequences</span>
+    <br />
+
+    <input type="submit" value="Uložit" />
+</form>
+
+
+</body>
+
+</html>
+

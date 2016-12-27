@@ -6,8 +6,7 @@
 </head>
 
 <body>
-
-<header th:replace="layout :: site-header" />
+<div th:replace="layout :: site-menu"></div>
 
 <h2>Please login</h2>
 <form method="post" th:object="${loginForm}">
@@ -31,7 +30,6 @@
     <input type="submit" value="Login" />
 </form>
 
-<footer th:replace="layout :: site-footer" />
 
 </body>
 

@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Objects;
 
@@ -23,18 +24,15 @@ public class AccountController {
 
     @RequestMapping("/users/login")
     public String showLoginForm(LoginForm loginForm) {
+
         return "users/login";
     }
 
-    @RequestMapping(value = "/users/login",
-            method = RequestMethod.POST)
-    public String showLoginForm(
-            @Valid LoginForm loginForm,
-            BindingResult bindingResult) {
-
+    @RequestMapping(value = "/users/login", method = RequestMethod.POST)
+    public String showLoginForm(@Valid LoginForm loginForm, BindingResult bindingResult, HttpSession session) {
         if (bindingResult.hasErrors()) {
             notificationService.addErrorMessage(
-                    "Моля изчистетет грешките по форматата, щото така, както си тръгнал, няма да те пусна напред!");
+                    "Nastala chyba!");
             return "users/login";
         }
 
@@ -44,8 +42,10 @@ public class AccountController {
             return "users/login";
         }
 
+        session.setAttribute("loged",true);
+        session.setAttribute("name", loginForm.getUsername());
         // Login successful
-        notificationService.addInfoMessage("Влезнахме!");
+        notificationService.addInfoMessage("Přihlášen!");
         return "redirect:/";
     }
 }

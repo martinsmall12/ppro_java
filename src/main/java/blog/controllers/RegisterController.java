@@ -30,11 +30,8 @@ public class RegisterController {
         return "users/register";
     }
 
-    @RequestMapping(value = "/users/register",
-            method = RequestMethod.POST)
-    public String showRegisterForm(
-            @Valid RegisterForm registerForm,
-            BindingResult bindingResult) {
+    @RequestMapping(value = "/users/register", method = RequestMethod.POST)
+    public String showRegisterForm(@Valid RegisterForm registerForm, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             notificationService.addErrorMessage(
