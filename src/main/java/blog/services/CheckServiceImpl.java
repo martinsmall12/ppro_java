@@ -3,12 +3,14 @@ package blog.services;
 import blog.models.Check;
 import blog.repositories.CheckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by MarMaly on 26.12.2016.
  */
+@Service
 public class CheckServiceImpl implements CheckService {
 
 
