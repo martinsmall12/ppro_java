@@ -1,10 +1,9 @@
 package blog.controllers;
 
 import blog.forms.CheckForm;
-import blog.forms.RegisterForm;
-import blog.models.User;
+import blog.models.Check;
+import blog.services.CheckService;
 import blog.services.NotificationService;
-import blog.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,7 +19,7 @@ public class CheckController {
     private NotificationService notificationService;
 
     @Autowired
-    private UserService userService;
+    private CheckService checkService;
 
 
 
@@ -37,9 +36,10 @@ public class CheckController {
                     "Chyba!");
             return "check/index";
         }
-        //userService.create(new User(registerForm.getUsername(), registerForm.getPassword(), registerForm.getFullName()));
 
-        // Login successful
+        checkService.create(new Check(checkForm.getName(), checkForm.getConsequences(), checkForm.getPrice(), checkForm.getPeriod()));
+
+
         notificationService.addInfoMessage("Kontrola vytvořena!");
         return "redirect:/";
     }

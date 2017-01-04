@@ -1,7 +1,6 @@
 package blog.services;
 
 import blog.models.Check;
-import blog.models.User;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
 public interface CheckService {
     List<Check> findAll();
     Check findById(Long id);
-    Check create(Check user);
-    Check edit(Check user);
+    Check create(Check check);
+    Check edit(Check check);
     void deleteById(Long id);
 }
