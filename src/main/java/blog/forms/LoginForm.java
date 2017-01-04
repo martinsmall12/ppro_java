@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 public class LoginForm {
 
     @Size(min = 2, max = 30,
-            message = "Моля вкарай юзърче междy 2 и 20 символяка")
+            message = "Přihlašovací jméno musí mít minimálně 3 a maximálně 30 znaků!")
     private String username;
 
     @Size(min = 3)
