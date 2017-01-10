@@ -1,6 +1,7 @@
 package blog.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "customers")
@@ -39,8 +40,8 @@ public class Customer {
     @Column(length = 20)
     private String phone;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private ProductSold productSold;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private Set<ProductSold> productSolds;
 
     public Customer(String ico, String dic, String company, String name, String street, String city, String state, String psc, String email, String phone) {
         this.ico = ico;
@@ -53,14 +54,6 @@ public class Customer {
         this.psc = psc;
         this.email = email;
         this.phone = phone;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getIco() {
@@ -141,5 +134,13 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Set<ProductSold> getProductSolds() {
+        return productSolds;
+    }
+
+    public void setProductSolds(Set<ProductSold> productSolds) {
+        this.productSolds = productSolds;
     }
 }

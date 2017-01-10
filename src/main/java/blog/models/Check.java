@@ -23,20 +23,14 @@ public class Check {
     @Column(length = 30)
     private String period;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "check")
+    private Set<ContOnProdSold> contOnProdSolds;
 
     public Check(String name, String consequences, String price, String period) {
         this.name = name;
         this.consequences = consequences;
         this.price = price;
         this.period = period;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

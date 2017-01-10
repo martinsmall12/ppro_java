@@ -24,19 +24,12 @@ public class Product {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private ProductSold productSold;
 
+
     public Product(String name, String shortDescription, String longDescription, String price) {
         this.name = name;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.price = price;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -69,5 +62,13 @@ public class Product {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public ProductSold getProductSold() {
+        return productSold;
+    }
+
+    public void setProductSold(ProductSold productSold) {
+        this.productSold = productSold;
     }
 }

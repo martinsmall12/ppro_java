@@ -9,45 +9,42 @@
 package blog.models;
 
 
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "CheckHistory")
-public class CheckHistory   {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+@Table(name = "checkHistory")
+public class CheckHistory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @Column(length = 30)
-        private String status;
+    @Column(length = 30)
+    private String status;
 
-        @Column(length = 1000)
-        private String sent;
+    @Column(length = 1000)
+    private String sent;
 
-        @Column(length = 5000)
-        private String remark;
+    @Column(length = 5000)
+    private String remark;
 
-        @Column(length = 30)
-        private Date dateOfSent;
+    @Column(length = 30)
+    private Date dateOfSent;
 
-        @Column(length = 30)
-        private Date dateOfImpl;
+    @Column(length = 30)
+    private Date dateOfImpl;
 
-    public Check(String status, String sent, String remark, Date dateOfSent, Date dateOfImpl) {
-        this.name = status;
-        this.consequences = sent;
-        this.price = remark;
-        this.period = dateOfSent;
-        this.period = dateOfImpl;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "checkHistory")
+    private Set<ContOnProdSold> contOnProdSolds;
 
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public CheckHistory(String status, String sent, String remark, Date dateOfSent, Date dateOfImpl) {
+        this.status = status;
+        this.sent = sent;
+        this.remark = remark;
+        this.dateOfSent = dateOfSent;
+        this.dateOfImpl = dateOfImpl;
     }
 
     public String getStatus() {
@@ -89,5 +86,6 @@ public class CheckHistory   {
     public void setDateOfImpl(Date dateOfImpl) {
         this.dateOfImpl = dateOfImpl;
     }
+}
 
 
