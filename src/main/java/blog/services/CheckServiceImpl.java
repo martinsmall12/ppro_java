@@ -19,7 +19,7 @@ public class CheckServiceImpl implements CheckService {
 
 	@Override
 	public List<Check> findAll() {
-		return null;
+		return checkRepository.findAll();
 	}
 
 	@Override

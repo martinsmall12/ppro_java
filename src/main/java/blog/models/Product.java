@@ -1,6 +1,7 @@
 package blog.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -21,8 +22,8 @@ public class Product {
     @Column(length = 30)
     private String price;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private ProductSold productSold;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private Set<ProductSold> productSolds;
 
 
     public Product(String name, String shortDescription, String longDescription, String price) {
@@ -64,11 +65,12 @@ public class Product {
         this.price = price;
     }
 
-    public ProductSold getProductSold() {
-        return productSold;
+
+    public Set<ProductSold> getProductSolds() {
+        return productSolds;
     }
 
-    public void setProductSold(ProductSold productSold) {
-        this.productSold = productSold;
+    public void setProductSolds(Set<ProductSold> productSolds) {
+        this.productSolds = productSolds;
     }
 }

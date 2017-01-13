@@ -12,6 +12,7 @@
     <ul>
         <li><a th:href="@{/users/login.html}">Login</a></li>
         <li><a th:href="@{/users/register.html}">Registrace</a></li>
+        <li><a th:href="@{/check}">Kontroly</a></li>
         <li th:text="${session.name}" th:unless="${session == null}">[...]</li>
     </ul>
 </div>

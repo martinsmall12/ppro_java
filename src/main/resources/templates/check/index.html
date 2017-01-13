@@ -2,13 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout :: site-head">
-    <title>Login</title>
+    <title>Kontroly</title>
 </head>
 
 <body>
 <div th:replace="layout :: site-menu"></div>
 
-<h2>Please login</h2>
+<h2>Kontroly</h2>
+<h3>Seznam kontrol</h3>
+<table>
+    <tr>
+        <th>Jméno kontroly</th>
+    </tr>
+
+    <tr th:each="check : ${checks}">
+        <td th:text="${check.name}">Onions</td>
+        <td th:text="${check.consequences}">1</td>
+        <td th:text="${check.price}">Onions</td>
+        <td th:text="${check.period}">Onions</td>
+    </tr>
+</table>
+
 <form method="post" th:object="${checkForm}">
     <label for="name">Jméno:</label>
     <input type="text" id="name" name="name" th:value="*{name}" />

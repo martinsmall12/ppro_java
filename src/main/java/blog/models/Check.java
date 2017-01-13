@@ -33,6 +33,9 @@ public class Check {
         this.period = period;
     }
 
+    public Check() {
+    }
+
     public String getName() {
         return name;
     }
@@ -64,4 +67,6 @@ public class Check {
     public void setPeriod(String period) {
         this.period = period;
     }
+
+
 }

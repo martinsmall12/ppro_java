@@ -5,16 +5,16 @@ import javax.validation.constraints.Size;
 
 public class ProductForm {
 
-    @Size(min = 30)
+    @Size(max = 30)
     private String name;
 
-    @Size(min = 500)
+    @Size(max = 500)
     private String shortDescription;
 
-    @Size(min = 1000)
+    @Size(max = 1000)
     private String longDescription;
 
-    @Size(min = 30)
+    @Size(max = 30)
     private String price;
 
     public String getName() {

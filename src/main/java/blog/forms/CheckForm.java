@@ -7,16 +7,16 @@ import javax.validation.constraints.Size;
 public class CheckForm {
 
 
-    @Size(min = 30)
+    @Size(max = 30)
     private String name;
 
-    @Size(min = 1000)
+    @Size(max = 1000)
     private String consequences;
 
-    @Size(min = 50)
+    @Size(max = 50)
     private String price;
 
-    @Size(min = 30)
+    @Size(max = 30)
     private String period;
 
     public String getName() {

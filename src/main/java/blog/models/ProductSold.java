@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "ProductSold")
+@Table(name = "ProductsSold")
 public class ProductSold {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +26,10 @@ public class ProductSold {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "ProductSold")
-    //private Set<ContOnProdSold> contOnProdSolds;
-
+    /*
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ProductsSold")
+    private Set<ContOnProdSold> contOnProdSolds;
+*/
 
     public ProductSold(String serialNumber, Date dateOfSale, Customer customer, Product product) {
         this.serialNumber = serialNumber;

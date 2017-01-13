@@ -6,11 +6,13 @@ import blog.services.CheckService;
 import blog.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class CheckController {
@@ -24,7 +26,10 @@ public class CheckController {
 
 
     @RequestMapping("/check")
-    public String showCheckForm(CheckForm checkForm) {
+    public String showCheckForm(CheckForm checkForm, Model model) {
+        List<Check> checks = checkService.findAll();
+        model.addAttribute("checks", checks);
+
         return "check/index";
     }
 
