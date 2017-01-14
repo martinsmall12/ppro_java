@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>Produkty</title>
+</head>
+
+<body>
+<div th:replace="layout :: site-menu"></div>
+
+<h2>Produkty</h2>
+<h3>Seznam produktů</h3>
+<table>
+    <tr>
+        <th>Jméno produktu</th>
+    </tr>
+
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}">Onions</td>
+        <td th:text="${product.shortDescription}">1</td>
+        <td th:text="${product.longDescription}">Onions</td>
+        <td th:text="${product.price}">Onions</td>
+    </tr>
+</table>
+
+<form method="post" th:object="${productForm}">
+    <label for="name">Jméno:</label>
+    <input type="text" id="name" name="name" th:value="*{name}" />
+    <span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Nevalidní jméno</span>
+
+    <label for="shortDescription">Price:</label>
+    <input type="text" id="shortDescription" name="shortDescription" th:value="*{shortDescription}" />
+    <span class="formError" th:if="${#fields.hasErrors('shortDescription')}" th:errors="*{shortDescription}">Invalid shortDescription</span>
+
+    <label for="longDescription">longDescription:</label>
+    <input type="text" id="longDescription" name="longDescription" th:value="*{longDescription}" />
+    <span class="formError" th:if="${#fields.hasErrors('longDescription')}" th:errors="*{longDescription}">Invalid longDescription</span>
+
+    <label for="price">price:</label>
+    <textarea type="text" id="price" name="price" th:value="*{price}" >
+    </textarea>
+    <span class="formError" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Invalid price</span>
+    <br />
+
+    <input type="submit" value="Uložit" />
+</form>
+
+
+</body>
+
+</html>
+

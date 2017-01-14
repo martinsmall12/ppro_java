@@ -47,6 +47,9 @@ public class CheckHistory {
         this.dateOfImpl = dateOfImpl;
     }
 
+    public CheckHistory() {
+    }
+
     public String getStatus() {
         return status;
     }

@@ -38,6 +38,9 @@ public class ProductSold {
         this.product = product;
     }
 
+    public ProductSold() {
+    }
+
     public String getSerialNumber() {
         return serialNumber;
     }

@@ -31,6 +31,9 @@ public class ContOnProdSold {
         this.productSold = productSold;
     }
 
+    public ContOnProdSold() {
+    }
+
     public Check getCheck() {
         return check;
     }
