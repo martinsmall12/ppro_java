@@ -9,37 +9,76 @@
 <div th:replace="layout :: site-menu"></div>
 
 <h2>Zákazník</h2>
-<h3>Seznam Zákazník</h3>
+<h3>Seznam Zákazníků</h3>
 <table>
     <tr>
         <th>Jméno Zákazníka</th>
     </tr>
 
-    <tr th:each="product : ${products}">
-        <td th:text="${product.name}">Onions</td>
-        <td th:text="${product.shortDescription}">1</td>
-        <td th:text="${product.longDescription}">Onions</td>
-        <td th:text="${product.price}">Onions</td>
+    <tr th:each="customer : ${customers}">
+        <td th:text="${customer.ico}">Onions</td>
+        <td th:text="${customer.dic}">Onions</td>
+        <td th:text="${customer.company}">Onions</td>
+        <td th:text="${customer.name}">Onions</td>
+        <td th:text="${customer.street}">Onions</td>
+        <td th:text="${customer.city}">Onions</td>
+        <td th:text="${customer.state}">Onions</td>
+        <td th:text="${customer.psc}">Onions</td>
+        <td th:text="${customer.email}">Onions</td>
+        <td th:text="${customer.phone}">Onions</td>
     </tr>
 </table>
 
-<form method="post" th:object="${productForm}">
+<form method="post" th:object="${customerForm}">
     <label for="name">Jméno:</label>
     <input type="text" id="name" name="name" th:value="*{name}" />
     <span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Nevalidní jméno</span>
+    <br />
 
-    <label for="shortDescription">Price:</label>
-    <input type="text" id="shortDescription" name="shortDescription" th:value="*{shortDescription}" />
-    <span class="formError" th:if="${#fields.hasErrors('shortDescription')}" th:errors="*{shortDescription}">Invalid shortDescription</span>
+    <label for="ico">IČO:</label>
+    <input type="text" id="ico" name="ico" th:value="*{ico}" />
+    <span class="formError" th:if="${#fields.hasErrors('ico')}" th:errors="*{ico}">Nesprávně zadané IČO</span>
+    <br />
 
-    <label for="longDescription">longDescription:</label>
-    <input type="text" id="longDescription" name="longDescription" th:value="*{longDescription}" />
-    <span class="formError" th:if="${#fields.hasErrors('longDescription')}" th:errors="*{longDescription}">Invalid longDescription</span>
+    <label for="dic">DIČ:</label>
+    <input type="text" id="dic" name="dic" th:value="*{dic}" />
+    <span class="formError" th:if="${#fields.hasErrors('dic')}" th:errors="*{dic}">Nesprávně zadané DIČ</span>
+    <br />
 
-    <label for="price">price:</label>
-    <textarea type="text" id="price" name="price" th:value="*{price}" >
+    <label for="company">Firma:</label>
+    <textarea type="text" id="company" name="company" th:value="*{company}" >
     </textarea>
-    <span class="formError" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Invalid price</span>
+    <span class="formError" th:if="${#fields.hasErrors('company')}" th:errors="*{company}">Nesprávně zadaný název firmy</span>
+    <br />
+
+    <label for="street">Ulice:</label>
+    <input type="text" id="street" name="street" th:value="*{street}" />
+    <span class="formError" th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Nesprávně zadaná ulice</span>
+    <br />
+
+    <label for="city">Město:</label>
+    <input type="text" id="city" name="city" th:value="*{city}" />
+    <span class="formError" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Nesprávně zadaná město</span>
+    <br />
+
+    <label for="state">Stát:</label>
+    <input type="text" id="state" name="state" th:value="*{state}" />
+    <span class="formError" th:if="${#fields.hasErrors('state')}" th:errors="*{state}">Nesprávně zadaná stát</span>
+    <br />
+
+    <label for="psc">PSČ:</label>
+    <input type="text" id="psc" name="psc" th:value="*{psc}" />
+    <span class="formError" th:if="${#fields.hasErrors('psc')}" th:errors="*{psc}">Nesprávně zadané PSČ</span>
+    <br />
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" th:value="*{email}" />
+    <span class="formError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Nesprávně zadaný Email</span>
+    <br />
+
+    <label for="phone">Telefon:</label>
+    <input type="text" id="phone" name="phone" th:value="*{phone}" />
+    <span class="formError" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Nesprávně zadaný Telefon</span>
     <br />
 
     <input type="submit" value="Uložit" />
