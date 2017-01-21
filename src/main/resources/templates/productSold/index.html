@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>Prodané produkty</title>
+</head>
+
+<body>
+<div th:replace="layout :: site-menu"></div>
+
+<h2>Prodané produkty</h2>
+<h3>Seznam prodaných produktů</h3>
+<table>
+    <tr>
+        <th>Jméno Prodaného produktu</th>
+    </tr>
+
+    <tr th:each="productSold : ${productsSold}">
+        <td th:text="${productSold.serialNumber}">Onions</td>
+        <td th:text="${#calendars.format(${productSold.dateOfSale},'dd MMMM yyyy')}">13 May 2011</td>
+        <td th:text="${productSold.customer}">Onions</td>
+        <td th:text="${productSold.product}">Onions</td>
+    </tr>
+
+</table>
+
+<form method="post" th:object="${productSoldForm}">
+    <label for="serialNumber">serialNumber:</label>
+    <input type="text" id="serialNumber" name="serialNumber" th:value="*{serialNumber}" />
+    <span class="formError" th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}">Nevalidní serialNumber</span>
+
+    <label for="dateOfSale">dateOfSale:</label>
+    <input type="text" id="dateOfSale" name="dateOfSale" th:value="*{dateOfSale}" />
+    <span class="formError" th:if="${#fields.hasErrors('dateOfSale')}" th:errors="*{dateOfSale}">Invalid dateOfSale</span>
+
+    <label for="customers">products:</label>
+    <select id="customers" th:field="*{customers}">
+        <option value="">Vyberte Produkt</option>
+        <option th:each="p : ${customersatr}" th:value="${p.id}"  th:text="${p.name}"></option>
+    </select>
+    <span class="formError" th:if="${#fields.hasErrors('customers')}" th:errors="*{customers}">Invalid customers</span>
+
+
+    <label for="products">products:</label>
+    <select id="products" th:field="*{products}">
+        <option value="">Vyberte Produkt</option>
+        <option th:each="p : ${productsatr}" th:value="${p.id}"  th:text="${p.name}"></option>
+    </select>
+    <span class="formError" th:if="${#fields.hasErrors('products')}" th:errors="*{products}">Invalid products</span>
+
+    <input type="submit" value="Uložit" />
+</form>
+
+
+</body>
+
+</html>
+

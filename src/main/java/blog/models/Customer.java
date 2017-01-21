@@ -13,7 +13,7 @@ public class Customer {
     @Column(nullable = false, length = 30, unique = true)
     private String ico;
 
-    @Column(nullable = false, length = 30, unique = true)
+    @Column(length = 30, unique = true)
     private String dic;
 
     @Column(length = 100)
@@ -57,6 +57,10 @@ public class Customer {
     }
 
     public Customer() {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getIco() {

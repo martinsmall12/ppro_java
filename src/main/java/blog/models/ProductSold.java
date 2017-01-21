@@ -15,7 +15,7 @@ public class ProductSold {
     @Column(nullable = false, length = 50, unique = true)
     private String serialNumber;
 
-    @Column(length = 20)
+    @Column
     private Date dateOfSale;
 
     @ManyToOne
