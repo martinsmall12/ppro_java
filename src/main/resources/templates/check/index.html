@@ -1,52 +1,128 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layout :: site-head">
-    <title>Kontroly</title>
-</head>
+<head th:replace="layout :: site-head"></head>
 
-<body>
-<div th:replace="layout :: site-menu"></div>
+<body class="hold-transition skin-blue fixed sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <header class="main-header" th:replace="layout :: site-header"></header>
 
-<h2>Kontroly</h2>
-<h3>Seznam kontrol</h3>
-<table>
-    <tr>
-        <th>Jméno kontroly</th>
-    </tr>
+    <aside class="main-sidebar" th:replace="layout :: site-menu"></aside>
 
-    <tr th:each="check : ${checks}">
-        <td th:text="${check.name}">Onions</td>
-        <td th:text="${check.consequences}">1</td>
-        <td th:text="${check.price}">Onions</td>
-        <td th:text="${check.period}">Onions</td>
-    </tr>
-</table>
 
-<form method="post" th:object="${checkForm}">
-    <label for="name">Jméno:</label>
-    <input type="text" id="name" name="name" th:value="*{name}" />
-    <span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Nevalidní jméno</span>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Vítejte ve systému pro správu prodaných produktů
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Layout</a></li>
+                <li class="active">Fixed</li>
+            </ol>
+        </section>
 
-    <label for="price">Price:</label>
-    <input type="text" id="price" name="price" th:value="*{price}" />
-    <span class="formError" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Invalid price</span>
+        <!-- Main content -->
+        <section class="content">
+            <div class="callout callout-info">
+                <h4>Tip!</h4>
 
-    <label for="period">period:</label>
-    <input type="text" id="period" name="period" th:value="*{period}" />
-    <span class="formError" th:if="${#fields.hasErrors('period')}" th:errors="*{period}">Invalid period</span>
+                <p>Add the fixed class to the body tag to get this layout. The fixed layout is your best option if your
+                    sidebar
+                    is bigger than your content because it prevents extra unwanted scrolling.</p>
+            </div>
+            <!-- Default box -->
 
-    <label for="consequences">consequences:</label>
-    <textarea type="text" id="consequences" name="consequences" th:value="*{consequences}" >
-    </textarea>
-    <span class="formError" th:if="${#fields.hasErrors('consequences')}" th:errors="*{consequences}">Invalid consequences</span>
-    <br />
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Quick Example</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form" method="post" th:object="${checkForm}">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="name">Název: </label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Vložte název kontroly" th:value="*{name}" />
+                            <span class="formError" th:if="${#fields.hasErrors('name')}"
+                                  th:errors="*{name}">Nevalidní jméno</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Cena: </label>
+                            <input type="number" class="form-control" id="price" name="price" placeholder="Vložte cenu kontroly" th:value="*{price}" />
+                            <span class="formError" th:if="${#fields.hasErrors('price')}"
+                                  th:errors="*{price}">Invalid price</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="period">Perioda: </label>
+                            <input type="text" class="form-control" id="period" name="period" placeholder="Vložte periodu kontroly" th:value="*{period}" />
+                            <span class="formError" th:if="${#fields.hasErrors('period')}" th:errors="*{period}">Invalid period</span>
+                        </div>
 
-    <input type="submit" value="Uložit" />
-</form>
+                        <div class="form-group">
+                            <label for="consequences">Důvody: </label>
+                            <textarea id="consequences" name="consequences" class="form-control" rows="3" placeholder="Vložte důsledky nerespektování kontroly" th:value="*{consequences}"></textarea>
+                            <span class="formError" th:if="${#fields.hasErrors('consequences')}"
+                                  th:errors="*{consequences}">Invalid consequences</span>
+                        </div>
 
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Uložit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Hover Data Table</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>Název</th>
+                            <th>Cena</th>
+                            <th>Perioda</th>
+                            <th>Důvody</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="check : ${checks}">
+                            <td th:text="${check.name}">Onions</td>
+                            <td th:text="${check.price}">Onions</td>
+                            <td th:text="${check.period}">Onions</td>
+                            <td th:text="${check.consequences}">1</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Název</th>
+                            <th>Cena</th>
+                            <th>Perioda</th>
+                            <th>Důvody</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <footer class="main-footer" th:replace="layout :: site-footer"></footer>
+</div>
 
 </body>
-
 </html>
 
