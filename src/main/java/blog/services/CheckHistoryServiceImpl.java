@@ -20,7 +20,7 @@ public class CheckHistoryServiceImpl implements CheckHistoryService {
     public List<CheckHistory> findAll() { return checkHistoryRepository.findAll(); }
 
     @Override
-    public  CheckHistory findById(Long id) {return null; }
+    public  CheckHistory findById(Long id) {return checkHistoryRepository.findOne(id); }
 
     @Override
     public CheckHistory create (CheckHistory checkHistory) { return checkHistoryRepository.save(checkHistory); }
@@ -29,8 +29,7 @@ public class CheckHistoryServiceImpl implements CheckHistoryService {
     public CheckHistory edit (CheckHistory checkHistory) { return null; }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id)  { checkHistoryRepository.delete(id); }
 
-    }
 
 }

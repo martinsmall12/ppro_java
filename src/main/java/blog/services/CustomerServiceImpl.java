@@ -1,8 +1,6 @@
 package blog.services;
 
-import blog.models.Check;
 import blog.models.Customer;
-import blog.repositories.CheckRepository;
 import blog.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer findById(Long id) {
-		return null;
+		return customerRepository.findOne(id);
 	}
 
 	@Override
@@ -39,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(Long id) { customerRepository.delete(id);
 
 	}
 }

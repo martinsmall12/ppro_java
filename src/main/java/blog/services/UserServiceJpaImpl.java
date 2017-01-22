@@ -22,12 +22,12 @@ public class UserServiceJpaImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
     public User findById(Long id) {
-        return null;
+        return userRepository.findOne(id);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class UserServiceJpaImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) { userRepository.delete(id);
 
     }
 }

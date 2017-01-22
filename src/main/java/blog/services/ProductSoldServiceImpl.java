@@ -1,9 +1,6 @@
 package blog.services;
 
-import blog.models.Check;
 import blog.models.ProductSold;
-import blog.repositories.CheckRepository;
-import blog.repositories.ProductRepository;
 import blog.repositories.ProductSoldRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +25,7 @@ public class ProductSoldServiceImpl implements ProductSoldService {
 
 	@Override
 	public ProductSold findById(Long id) {
-		return null;
+		return productSoldRepository.findOne(id);
 	}
 
 	@Override
@@ -42,7 +39,6 @@ public class ProductSoldServiceImpl implements ProductSoldService {
 	}
 
 	@Override
-	public void deleteById(Long id) {
-
+	public void deleteById(Long id) { productSoldRepository.delete(id);
 	}
 }
