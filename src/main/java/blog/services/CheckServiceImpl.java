@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by MarMaly on 26.12.2016.
@@ -24,7 +25,7 @@ public class CheckServiceImpl implements CheckService {
 
 	@Override
 	public Check findById(Long id) {
-		return null;
+		return checkRepository.findOne(id);
 	}
 
 	@Override
@@ -39,6 +40,6 @@ public class CheckServiceImpl implements CheckService {
 
 	@Override
 	public void deleteById(Long id) {
-
+		checkRepository.delete(id);
 	}
 }

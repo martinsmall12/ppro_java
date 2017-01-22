@@ -47,25 +47,25 @@
                         <div class="form-group">
                             <label for="name">Název: </label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Vložte název kontroly" th:value="*{name}" />
-                            <span class="formError" th:if="${#fields.hasErrors('name')}"
+                            <span class="help-block" th:if="${#fields.hasErrors('name')}"
                                   th:errors="*{name}">Nevalidní jméno</span>
                         </div>
                         <div class="form-group">
                             <label for="price">Cena: </label>
                             <input type="number" class="form-control" id="price" name="price" placeholder="Vložte cenu kontroly" th:value="*{price}" />
-                            <span class="formError" th:if="${#fields.hasErrors('price')}"
+                            <span class="help-block" th:if="${#fields.hasErrors('price')}"
                                   th:errors="*{price}">Invalid price</span>
                         </div>
                         <div class="form-group">
                             <label for="period">Perioda: </label>
                             <input type="text" class="form-control" id="period" name="period" placeholder="Vložte periodu kontroly" th:value="*{period}" />
-                            <span class="formError" th:if="${#fields.hasErrors('period')}" th:errors="*{period}">Invalid period</span>
+                            <span class="help-block" th:if="${#fields.hasErrors('period')}" th:errors="*{period}">Invalid period</span>
                         </div>
 
                         <div class="form-group">
                             <label for="consequences">Důvody: </label>
                             <textarea id="consequences" name="consequences" class="form-control" rows="3" placeholder="Vložte důsledky nerespektování kontroly" th:value="*{consequences}"></textarea>
-                            <span class="formError" th:if="${#fields.hasErrors('consequences')}"
+                            <span class="help-block" th:if="${#fields.hasErrors('consequences')}"
                                   th:errors="*{consequences}">Invalid consequences</span>
                         </div>
 
