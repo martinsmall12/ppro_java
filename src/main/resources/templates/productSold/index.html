@@ -42,32 +42,32 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="post" th:object="${productsSoldForm}">
+                <form role="form" method="post" th:object="${productSoldForm}">
                     <div class="box-body">
                         <div class="form-group">
                             <label for="serialNumber">Seriové číslo:</label>
-                            <input type="text" id="serialNumber" name="serialNumber" th:value="*{serialNumber}" />
+                            <input type="text" class="form-control" id="serialNumber" name="serialNumber" th:value="*{serialNumber}" />
                             <span class="formError" th:if="${#fields.hasErrors('serialNumber')}"
                                   th:errors="*{serialNumber}">Chybně zadané seriové číslo.</span>
                         </div>
                         <div class="form-group">
-                            <label for="dateOfSale">dateOfSale:</label>
-                            <input type="text" id="dateOfSale" name="dateOfSale" th:value="*{dateOfSale}" />
+                            <label for="dateOfSale">Datum prodeje: </label>
+                            <input type="date" class="form-control" id="dateOfSale" name="dateOfSale" th:value="*{dateOfSale}" />
                             <span class="formError" th:if="${#fields.hasErrors('dateOfSale')}"
                                   th:errors="*{dateOfSale}">Neplatný datum prodeje.</span>
                         </div>
                         <div class="form-group">
-                            <label for="customers">products:</label>
-                            <select id="customers" th:field="*{customers}">
-                                <option value="">Vyberte Produkt</option>
+                            <label for="customers">Zákazník</label>
+                            <select id="customers" class="form-control" th:field="*{customers}">
+                                <option value="">Vyberte</option>
                                 <option th:each="p : ${customersatr}" th:value="${p.id}"  th:text="${p.name}"></option>
                             </select>
                             <span class="formError" th:if="${#fields.hasErrors('customers')}"
                                   th:errors="*{customers}">Neplatně uvedený zákazník.</span>
                         </div>
                         <div class="form-group">
-                            <label for="products">products:</label>
-                            <select id="products" th:field="*{products}">
+                            <label for="products">Produkt:</label>
+                            <select id="products" class="form-control" th:field="*{products}">
                                 <option value="">Vyberte Produkt</option>
                                 <option th:each="p : ${productsatr}" th:value="${p.id}"  th:text="${p.name}"></option>
                             </select>
@@ -102,7 +102,7 @@
                         <tbody>
                         <tr th:each="productSold : ${productsSold}">
                             <td th:text="${productSold.serialNumber}">Onions</td>
-                            <td th:text="${#calendars.format(${productSold.dateOfSale},'dd MMMM yyyy')}">13 May 2011</td>
+                            <td th:text="${#calendars.format(${productSold.dateOfSale},'yyyy-MM-dd')}">2011 May 13</td>
                             <td th:text="${productSold.customer}">Onions</td>
                             <td th:text="${productSold.product}">Onions</td>
                         </tr>

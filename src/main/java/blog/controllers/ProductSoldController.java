@@ -40,8 +40,6 @@ public class ProductSoldController {
     @RequestMapping("/productSold")
     public String showProductSoldForm(ProductSoldForm productSoldForm, Model model) {
 
-        productSoldForm.setProducts(productService.findAll());
-
         List<Product> products = productService.findAll();
         model.addAttribute("productsatr", products);
 

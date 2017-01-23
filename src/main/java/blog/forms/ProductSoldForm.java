@@ -3,7 +3,7 @@ package blog.forms;
 
 import blog.models.Customer;
 import blog.models.Product;
-import sun.util.resources.cldr.mas.CurrencyNames_mas;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -15,11 +15,14 @@ public class ProductSoldForm {
     @Size(max = 50)
     private String serialNumber;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfSale;
 
     private List<Product> products;
 
     private List<Customer> customers;
+
+
 
     public String getSerialNumber() {
         return serialNumber;
