@@ -2,12 +2,9 @@ package blog.controllers;
 
 
 import blog.forms.CustomerForm;
-import blog.forms.ProductForm;
 import blog.models.Customer;
-import blog.models.Product;
 import blog.services.CustomerService;
 import blog.services.NotificationService;
-import blog.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,8 +42,16 @@ public class CustomerController {
                     "Chyba!");
             return "customers/index";
         }
-
-        //productService.create(new Product(productForm.getName(),productForm.getShortDescription(), productForm.getLongDescription(), productForm.getPrice()));
+        customerService.create(new Customer(customerForm.getIco(),
+                customerForm.getDic(),
+                customerForm.getCompany(),
+                customerForm.getName(),
+                customerForm.getStreet(),
+                customerForm.getCity(),
+                customerForm.getState(),
+                customerForm.getPsc(),
+                customerForm.getEmail(),
+                customerForm.getPhone()));
 
         notificationService.addInfoMessage("Zákazník vytvořen!");
         return "redirect:/";

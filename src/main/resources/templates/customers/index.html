@@ -1,90 +1,182 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layout :: site-head">
-    <title>Zákazník</title>
-</head>
+<head th:replace="layout :: site-head"></head>
 
-<body>
-<div th:replace="layout :: site-menu"></div>
+<body class="hold-transition skin-blue fixed sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <header class="main-header" th:replace="layout :: site-header"></header>
 
-<h2>Zákazník</h2>
-<h3>Seznam Zákazníků</h3>
-<table>
-    <tr>
-        <th>Jméno Zákazníka</th>
-    </tr>
-
-    <tr th:each="customer : ${customers}">
-        <td th:text="${customer.ico}">Onions</td>
-        <td th:text="${customer.dic}">Onions</td>
-        <td th:text="${customer.company}">Onions</td>
-        <td th:text="${customer.name}">Onions</td>
-        <td th:text="${customer.street}">Onions</td>
-        <td th:text="${customer.city}">Onions</td>
-        <td th:text="${customer.state}">Onions</td>
-        <td th:text="${customer.psc}">Onions</td>
-        <td th:text="${customer.email}">Onions</td>
-        <td th:text="${customer.phone}">Onions</td>
-    </tr>
-</table>
-
-<form method="post" th:object="${customerForm}">
-    <label for="name">Jméno:</label>
-    <input type="text" id="name" name="name" th:value="*{name}" />
-    <span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Nevalidní jméno</span>
-    <br />
-
-    <label for="ico">IČO:</label>
-    <input type="text" id="ico" name="ico" th:value="*{ico}" />
-    <span class="formError" th:if="${#fields.hasErrors('ico')}" th:errors="*{ico}">Nesprávně zadané IČO</span>
-    <br />
-
-    <label for="dic">DIČ:</label>
-    <input type="text" id="dic" name="dic" th:value="*{dic}" />
-    <span class="formError" th:if="${#fields.hasErrors('dic')}" th:errors="*{dic}">Nesprávně zadané DIČ</span>
-    <br />
-
-    <label for="company">Firma:</label>
-    <textarea type="text" id="company" name="company" th:value="*{company}" >
-    </textarea>
-    <span class="formError" th:if="${#fields.hasErrors('company')}" th:errors="*{company}">Nesprávně zadaný název firmy</span>
-    <br />
-
-    <label for="street">Ulice:</label>
-    <input type="text" id="street" name="street" th:value="*{street}" />
-    <span class="formError" th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Nesprávně zadaná ulice</span>
-    <br />
-
-    <label for="city">Město:</label>
-    <input type="text" id="city" name="city" th:value="*{city}" />
-    <span class="formError" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Nesprávně zadaná město</span>
-    <br />
-
-    <label for="state">Stát:</label>
-    <input type="text" id="state" name="state" th:value="*{state}" />
-    <span class="formError" th:if="${#fields.hasErrors('state')}" th:errors="*{state}">Nesprávně zadaná stát</span>
-    <br />
-
-    <label for="psc">PSČ:</label>
-    <input type="text" id="psc" name="psc" th:value="*{psc}" />
-    <span class="formError" th:if="${#fields.hasErrors('psc')}" th:errors="*{psc}">Nesprávně zadané PSČ</span>
-    <br />
-
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" th:value="*{email}" />
-    <span class="formError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Nesprávně zadaný Email</span>
-    <br />
-
-    <label for="phone">Telefon:</label>
-    <input type="text" id="phone" name="phone" th:value="*{phone}" />
-    <span class="formError" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Nesprávně zadaný Telefon</span>
-    <br />
-
-    <input type="submit" value="Uložit" />
-</form>
+    <aside class="main-sidebar" th:replace="layout :: site-menu"></aside>v>
 
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Vítejte ve systému pro správu prodaných produktů
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Layout</a></li>
+                <li class="active">Fixed</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="callout callout-info">
+                <h4>Tip!</h4>
+
+                <p>Add the fixed class to the body tag to get this layout. The fixed layout is your best option if your
+                    sidebar
+                    is bigger than your content because it prevents extra unwanted scrolling.</p>
+            </div>
+            <!-- Default box -->
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Zákaznící</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+
+
+
+                <form role="form" method="post" th:object="${customerForm}">
+                    <div class="box-body">
+                        <div class="form-group">
+                        <label for="name">Jméno: </label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Vložte Vaše jméno" th:value="*{name}" />
+                        <span class="formError" th:if="${#fields.hasErrors('name')}"
+                            th:errors="*{name}">Nevalidní jméno</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="ico">IČO:</label>
+                        <input type="text" id="ico" name="ico" placeholder="Vložte IČO" th:value="*{ico}" />
+                        <span class="formError" th:if="${#fields.hasErrors('ico')}"
+                            th:errors="*{ico}">Nesprávně zadané IČO</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="dic">DIČ:</label>
+                        <input type="text" id="dic" name="dic" placeholder="Vložte DIČ" th:value="*{dic}" />
+                        <span class="formError" th:if="${#fields.hasErrors('dic')}"
+                              th:errors="*{dic}">Nesprávně zadané DIČ</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Firma:</label>
+                        <input type="text" id="company" name="company" placeholder="Vložte název firmy" th:value="*{company}" />
+                        <span class="formError" th:if="${#fields.hasErrors('company')}"
+                              th:errors="*{company}">Nesprávně zadaný název firmy</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="street">Ulice:</label>
+                        <input type="text" id="street" name="street" placeholder="Vložte název ulice" th:value="*{street}" />
+                        <span class="formError" th:if="${#fields.hasErrors('street')}"
+                              th:errors="*{street}">Nesprávně zadaná ulice</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Město:</label>
+                        <input type="text" id="city" name="city" placeholder="Vložte město" th:value="*{city}" />
+                        <span class="formError" th:if="${#fields.hasErrors('city')}"
+                              th:errors="*{city}">Nesprávně zadaná město</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">Stát:</label>
+                        <input type="text" id="state" name="state" placeholder="Vložte název státu" th:value="*{state}" />
+                        <span class="formError" th:if="${#fields.hasErrors('state')}"
+                              th:errors="*{state}">Nesprávně zadaná stát</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="psc">PSČ:</label>
+                        <input type="text" id="psc" name="psc" placeholder="Vložte PSČ" th:value="*{psc}" />
+                        <span class="formError" th:if="${#fields.hasErrors('psc')}"
+                              th:errors="*{psc}">Nesprávně zadané PSČ</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" id="email" name="email" placeholder="Vložte email" th:value="*{email}" />
+                        <span class="formError" th:if="${#fields.hasErrors('email')}"
+                              th:errors="*{email}">Nesprávně zadaný Email</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon:</label>
+                        <input type="text" id="phone" name="phone" placeholder="Vložte telefoní číslo" th:value="*{phone}" />
+                        <span class="formError" th:if="${#fields.hasErrors('phone')}"
+                              th:errors="*{phone}">Nesprávně zadaný Telefon</span>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                     <button type="submit" class="btn btn-primary">Uložit</button>
+                </div>
+                </form>
+            </div>
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Hover Data Table</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>IČO</th>
+                            <th>DIČ</th>
+                            <th>Společnost</th>
+                            <th>Jméno</th>
+                            <th>Ulice</th>
+                            <th>Město</th>
+                            <th>Země</th>
+                            <th>PSĆ</th>
+                            <th>Email</th>
+                            <th>Telefon</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="customer : ${customers}">
+                            <td th:text="${customer.ico}">Onions</td>
+                            <td th:text="${customer.dic}">Onions</td>
+                            <td th:text="${customer.company}">Onions</td>
+                            <td th:text="${customer.name}">Onions</td>
+                            <td th:text="${customer.street}">Onions</td>
+                            <td th:text="${customer.city}">Onions</td>
+                            <td th:text="${customer.state}">Onions</td>
+                            <td th:text="${customer.psc}">Onions</td>
+                            <td th:text="${customer.email}">Onions</td>
+                            <td th:text="${customer.phone}">Onions</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>IČO</th>
+                            <th>DIČ</th>
+                            <th>Společnost</th>
+                            <th>Jméno</th>
+                            <th>Ulice</th>
+                            <th>Město</th>
+                            <th>Země</th>
+                            <th>PSĆ</th>
+                            <th>Email</th>
+                            <th>Telefon</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <footer class="main-footer" th:replace="layout :: site-footer"></footer>
+</div>
 </body>
 
 </html>
