@@ -1,58 +1,150 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layout :: site-head">
-    <title>Prodané produkty</title>
-</head>
+<head th:replace="layout :: site-head"></head>
 
-<body>
-<div th:replace="layout :: site-menu"></div>
+<body class="hold-transition skin-blue fixed sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <header class="main-header" th:replace="layout :: site-header"></header>
 
-<h2>Prodané produkty</h2>
-<h3>Seznam prodaných produktů</h3>
-<table>
-    <tr>
-        <th>Jméno Prodaného produktu</th>
-    </tr>
-
-    <tr th:each="productSold : ${productsSold}">
-        <td th:text="${productSold.serialNumber}">Onions</td>
-        <td th:text="${#calendars.format(${productSold.dateOfSale},'dd MMMM yyyy')}">13 May 2011</td>
-        <td th:text="${productSold.customer}">Onions</td>
-        <td th:text="${productSold.product}">Onions</td>
-    </tr>
-
-</table>
-
-<form method="post" th:object="${productSoldForm}">
-    <label for="serialNumber">serialNumber:</label>
-    <input type="text" id="serialNumber" name="serialNumber" th:value="*{serialNumber}" />
-    <span class="formError" th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}">Nevalidní serialNumber</span>
-
-    <label for="dateOfSale">dateOfSale:</label>
-    <input type="text" id="dateOfSale" name="dateOfSale" th:value="*{dateOfSale}" />
-    <span class="formError" th:if="${#fields.hasErrors('dateOfSale')}" th:errors="*{dateOfSale}">Invalid dateOfSale</span>
-
-    <label for="customers">products:</label>
-    <select id="customers" th:field="*{customers}">
-        <option value="">Vyberte Produkt</option>
-        <option th:each="p : ${customersatr}" th:value="${p.id}"  th:text="${p.name}"></option>
-    </select>
-    <span class="formError" th:if="${#fields.hasErrors('customers')}" th:errors="*{customers}">Invalid customers</span>
+    <aside class="main-sidebar" th:replace="layout :: site-menu"></aside>
 
 
-    <label for="products">products:</label>
-    <select id="products" th:field="*{products}">
-        <option value="">Vyberte Produkt</option>
-        <option th:each="p : ${productsatr}" th:value="${p.id}"  th:text="${p.name}"></option>
-    </select>
-    <span class="formError" th:if="${#fields.hasErrors('products')}" th:errors="*{products}">Invalid products</span>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Vítejte ve systému pro správu prodaných produktů
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Layout</a></li>
+                <li class="active">Fixed</li>
+            </ol>
+        </section>
 
-    <input type="submit" value="Uložit" />
-</form>
+        <!-- Main content -->
+        <section class="content">
+            <div class="callout callout-info">
+                <h4>Tip!</h4>
+
+                <p>Add the fixed class to the body tag to get this layout. The fixed layout is your best option if your
+                    sidebar
+                    is bigger than your content because it prevents extra unwanted scrolling.</p>
+            </div>
+            <!-- Default box -->
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Správa prodaných produktů.</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form" method="post" th:object="${productsSoldForm}">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="serialNumber">Seriové číslo:</label>
+                            <input type="text" id="serialNumber" name="serialNumber" th:value="*{serialNumber}" />
+                            <span class="formError" th:if="${#fields.hasErrors('serialNumber')}"
+                                  th:errors="*{serialNumber}">Chybně zadané seriové číslo.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateOfSale">dateOfSale:</label>
+                            <input type="text" id="dateOfSale" name="dateOfSale" th:value="*{dateOfSale}" />
+                            <span class="formError" th:if="${#fields.hasErrors('dateOfSale')}"
+                                  th:errors="*{dateOfSale}">Neplatný datum prodeje.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="customers">products:</label>
+                            <select id="customers" th:field="*{customers}">
+                                <option value="">Vyberte Produkt</option>
+                                <option th:each="p : ${customersatr}" th:value="${p.id}"  th:text="${p.name}"></option>
+                            </select>
+                            <span class="formError" th:if="${#fields.hasErrors('customers')}"
+                                  th:errors="*{customers}">Neplatně uvedený zákazník.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="products">products:</label>
+                            <select id="products" th:field="*{products}">
+                                <option value="">Vyberte Produkt</option>
+                                <option th:each="p : ${productsatr}" th:value="${p.id}"  th:text="${p.name}"></option>
+                            </select>
+                            <span class="formError" th:if="${#fields.hasErrors('products')}"
+                                  th:errors="*{products}">Neplatně uvedený produkt.</span>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Uložit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Hover Data Table</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>Seriové číslo</th>
+                            <th>Datum prodeje</th>
+                            <th>Zákazník</th>
+                            <th>Produkt</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="productSold : ${productsSold}">
+                            <td th:text="${productSold.serialNumber}">Onions</td>
+                            <td th:text="${#calendars.format(${productSold.dateOfSale},'dd MMMM yyyy')}">13 May 2011</td>
+                            <td th:text="${productSold.customer}">Onions</td>
+                            <td th:text="${productSold.product}">Onions</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Seriové číslo</th>
+                            <th>Datum prodeje</th>
+                            <th>Zákazník</th>
+                            <th>Produkt</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <footer class="main-footer" th:replace="layout :: site-footer"></footer>
+</div>
 
 
+<!-- page script -->
+<script>
+    $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+</script>
 </body>
-
 </html>
+
 
