@@ -45,25 +45,25 @@
                                   th:errors="*{status}">Nevalidní status</span>
                         </div>
                         <div class="form-group">
-                            <label for="sent">Sent:</label>
+                            <label for="sent">Odesláno:</label>
                             <input type="text" class="form-control" id="sent" name="sent" placeholder="Byla kontrola provedena ANO/NE?" th:value="*{sent}" />
                             <span class="formError" th:if="${#fields.hasErrors('sent')}"
                                   th:errors="*{sent}">Chybný status odeslání.</span>
                         </div>
                         <div class="form-group">
-                            <label for="remark">Remark:</label>
+                            <label for="remark">Poznámka:</label>
                             <input type="text" class="form-control" id="remark" name="remark" placeholder="Vložte popis kontroly." th:value="*{remark}" />
                             <span class="formError" th:if="${#fields.hasErrors('remark')}"
                                   th:errors="*{remark}">Chybná poznámka</span>
                         </div>
                         <div class="form-group">
-                            <label for="dateOfSent">dateOfSent:</label>
+                            <label for="dateOfSent">Datum odeslání.:</label>
                             <input type="date" class="form-control" id="dateOfSent" name="dateOfSent" placeholder="Vložte datum odeslání." th:value="*{dateOfSent}" />
                             <span class="formError" th:if="${#fields.hasErrors('dateOfSent')}"
                                  th:errors="*{DateOfSent}">Chybný datum</span>
                         </div>
                         <div class="form-group">
-                            <label for="dateOfSent">dateOfImpl:</label>
+                            <label for="dateOfSent">Datum provedení.:</label>
                             <input type="date" class="form-control" id="dateOfImpl" name="dateOfImpl" placeholder="Vložte datum provedení." th:value="*{dateOfImpl}" />
                             <span class="formError" th:if="${#fields.hasErrors('dateOfImpl')}"
                                   th:errors="*{DateOfImpl}">Chybný datum</span>
@@ -99,8 +99,8 @@
                             <td th:text="${checkHistory.status}">Onions</td>
                             <td th:text="${checkHistory.sent}">Onions</td>
                             <td th:text="${checkHistory.remark}">Onions</td>
-                            <td th:text="${#calendars.format(${checkHistory.dateOfSent},'dd MMMM yyyy')}">13 May 2011</td>
-                            <td th:text="${#calendars.format(${checkHistory.dateOfImpl},'dd MMMM yyyy')}">13 May 2011</td>
+                            <td th:text="${#dates.format(checkHistory.dateOfSent, 'dd MMMMMM yyyy')}"></td>
+                            <td th:text="${#dates.format(checkHistory.dateOfImpl, 'dd MMMMMM yyyy')}"></td>
                         </tr>
                         </tbody>
                         <tfoot>

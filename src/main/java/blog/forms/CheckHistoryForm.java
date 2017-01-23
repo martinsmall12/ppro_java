@@ -1,6 +1,8 @@
 package blog.forms;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -15,9 +17,11 @@ public class CheckHistoryForm {
     @Size(max = 5000)
     private String remark;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Size(max = 30)
     private Date dateOfSent;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Size(max = 30)
     private Date dateOfImpl;
 
