@@ -234,6 +234,8 @@
                         <li><a th:href="@{/users/register.html}"><i class="fa fa-circle-o"></i>Registrace</a></li>
                         <li><a th:href="@{/check}"><i class="fa fa-circle-o"></i>Kontroly</a></li>
                         <li><a th:href="@{/products}"><i class="fa fa-circle-o"></i>Produkty</a></li>
+                        <li><a th:href="@{/customers}"><i class="fa fa-circle-o"></i>Zákazníci</a></li>
+                        <li><a th:href="@{/checkHistory}"><i class="fa fa-circle-o"></i>Historie kontrol</a></li>
                         <li><a th:href="@{/productSold}"><i class="fa fa-circle-o"></i>Prodané produkty</a></li>
                         <li th:text="${session.name}" th:unless="${session == null}">[...]</li>
                     </ul>

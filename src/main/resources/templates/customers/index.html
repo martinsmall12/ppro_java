@@ -55,55 +55,55 @@
                     </div>
                     <div class="form-group">
                         <label for="ico">IČO:</label>
-                        <input type="text" id="ico" name="ico" placeholder="Vložte IČO" th:value="*{ico}" />
+                        <input type="text" class="form-control" id="ico" name="ico" placeholder="Vložte IČO" th:value="*{ico}" />
                         <span class="formError" th:if="${#fields.hasErrors('ico')}"
                             th:errors="*{ico}">Nesprávně zadané IČO</span>
                     </div>
                     <div class="form-group">
                         <label for="dic">DIČ:</label>
-                        <input type="text" id="dic" name="dic" placeholder="Vložte DIČ" th:value="*{dic}" />
+                        <input type="text" class="form-control"  id="dic" name="dic" placeholder="Vložte DIČ" th:value="*{dic}" />
                         <span class="formError" th:if="${#fields.hasErrors('dic')}"
                               th:errors="*{dic}">Nesprávně zadané DIČ</span>
                     </div>
                     <div class="form-group">
                         <label for="company">Firma:</label>
-                        <input type="text" id="company" name="company" placeholder="Vložte název firmy" th:value="*{company}" />
+                        <input type="text" class="form-control" id="company" name="company" placeholder="Vložte název firmy" th:value="*{company}" />
                         <span class="formError" th:if="${#fields.hasErrors('company')}"
                               th:errors="*{company}">Nesprávně zadaný název firmy</span>
                     </div>
                     <div class="form-group">
                         <label for="street">Ulice:</label>
-                        <input type="text" id="street" name="street" placeholder="Vložte název ulice" th:value="*{street}" />
+                        <input type="text" class="form-control" id="street" name="street" placeholder="Vložte název ulice" th:value="*{street}" />
                         <span class="formError" th:if="${#fields.hasErrors('street')}"
                               th:errors="*{street}">Nesprávně zadaná ulice</span>
                     </div>
                     <div class="form-group">
                         <label for="city">Město:</label>
-                        <input type="text" id="city" name="city" placeholder="Vložte město" th:value="*{city}" />
+                        <input type="text" id="city" class="form-control" name="city" placeholder="Vložte město" th:value="*{city}" />
                         <span class="formError" th:if="${#fields.hasErrors('city')}"
                               th:errors="*{city}">Nesprávně zadaná město</span>
                     </div>
                     <div class="form-group">
                         <label for="state">Stát:</label>
-                        <input type="text" id="state" name="state" placeholder="Vložte název státu" th:value="*{state}" />
+                        <input type="text" id="state" class="form-control" name="state" placeholder="Vložte název státu" th:value="*{state}" />
                         <span class="formError" th:if="${#fields.hasErrors('state')}"
                               th:errors="*{state}">Nesprávně zadaná stát</span>
                     </div>
                     <div class="form-group">
                         <label for="psc">PSČ:</label>
-                        <input type="text" id="psc" name="psc" placeholder="Vložte PSČ" th:value="*{psc}" />
+                        <input type="text" id="psc" class="form-control" name="psc" placeholder="Vložte PSČ" th:value="*{psc}" />
                         <span class="formError" th:if="${#fields.hasErrors('psc')}"
                               th:errors="*{psc}">Nesprávně zadané PSČ</span>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="text" id="email" name="email" placeholder="Vložte email" th:value="*{email}" />
+                        <input type="text" id="email" class="form-control" name="email" placeholder="Vložte email" th:value="*{email}" />
                         <span class="formError" th:if="${#fields.hasErrors('email')}"
                               th:errors="*{email}">Nesprávně zadaný Email</span>
                     </div>
                     <div class="form-group">
                         <label for="phone">Telefon:</label>
-                        <input type="text" id="phone" name="phone" placeholder="Vložte telefoní číslo" th:value="*{phone}" />
+                        <input type="text" id="phone" class="form-control" name="phone" placeholder="Vložte telefoní číslo" th:value="*{phone}" />
                         <span class="formError" th:if="${#fields.hasErrors('phone')}"
                               th:errors="*{phone}">Nesprávně zadaný Telefon</span>
                     </div>
@@ -122,7 +122,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="example2" class="table table-bordered table-hover">
+                    <table id="example1" class="table table-bordered table-hover">
                         <thead>
                         <tr>
                             <th>IČO</th>
@@ -177,6 +177,21 @@
 
     <footer class="main-footer" th:replace="layout :: site-footer"></footer>
 </div>
+
+<!-- page script -->
+<script>
+    $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+</script>
 </body>
 
 </html>
