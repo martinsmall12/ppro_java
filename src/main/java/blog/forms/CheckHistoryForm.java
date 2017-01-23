@@ -18,11 +18,9 @@ public class CheckHistoryForm {
     private String remark;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Size(max = 30)
     private Date dateOfSent;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Size(max = 30)
     private Date dateOfImpl;
 
     public String getStatus() {
