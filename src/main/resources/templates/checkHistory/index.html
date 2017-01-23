@@ -27,13 +27,7 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="callout callout-info">
-                <h4>Tip!</h4>
 
-                <p>Add the fixed class to the body tag to get this layout. The fixed layout is your best option if your
-                    sidebar
-                    is bigger than your content because it prevents extra unwanted scrolling.</p>
-            </div>
             <!-- Default box -->
 
             <div class="box box-primary">
@@ -46,31 +40,31 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="status">Status:</label>
-                            <input type="text" id="status" name="status" th:value="*{status}" />
+                            <input type="text" class="form-control" id="status" name="status" placeholder=" Vložte status kontroly." th:value="*{status}" />
                             <span class="formError" th:if="${#fields.hasErrors('status')}"
                                   th:errors="*{status}">Nevalidní status</span>
                         </div>
                         <div class="form-group">
                             <label for="sent">Sent:</label>
-                            <input type="text" id="sent" name="sent" th:value="*{sent}" />
+                            <input type="text" class="form-control" id="sent" name="sent" placeholder="Byla kontrola provedena ANO/NE?" th:value="*{sent}" />
                             <span class="formError" th:if="${#fields.hasErrors('sent')}"
                                   th:errors="*{sent}">Chybný status odeslání.</span>
                         </div>
                         <div class="form-group">
                             <label for="remark">Remark:</label>
-                            <input type="text" id="remark" name="remark" th:value="*{remark}" />
+                            <input type="text" class="form-control" id="remark" name="remark" placeholder="Vložte popis kontroly." th:value="*{remark}" />
                             <span class="formError" th:if="${#fields.hasErrors('remark')}"
                                   th:errors="*{remark}">Chybná poznámka</span>
                         </div>
                         <div class="form-group">
                             <label for="dateOfSent">dateOfSent:</label>
-                            <input type="text" id="dateOfSent" name="dateOfSent" th:value="*{dateOfSent}" />
+                            <input type="date" class="form-control" id="dateOfSent" name="dateOfSent" placeholder="Vložte datum odeslání." th:value="*{dateOfSent}" />
                             <span class="formError" th:if="${#fields.hasErrors('dateOfSent')}"
                                  th:errors="*{DateOfSent}">Chybný datum</span>
                         </div>
                         <div class="form-group">
                             <label for="dateOfSent">dateOfImpl:</label>
-                            <input type="text" id="dateOfImpl" name="dateOfImpl" th:value="*{dateOfImpl}" />
+                            <input type="date" class="form-control" id="dateOfImpl" name="dateOfImpl" placeholder="Vložte datum provedení." th:value="*{dateOfImpl}" />
                             <span class="formError" th:if="${#fields.hasErrors('dateOfImpl')}"
                                   th:errors="*{DateOfImpl}">Chybný datum</span>
                         </div>
