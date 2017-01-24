@@ -97,8 +97,8 @@
                         <tr th:each="productSold : ${productsSold}">
                             <td th:text="${productSold.serialNumber}">Onions</td>
                             <td th:text="${#dates.format(productSold.dateOfSale, 'dd MMMMMM yyyy')}"></td>
-                            <td th:text="${productSold.customer}">Onions</td>
-                            <td th:text="${productSold.product}">Onions</td>
+                            <td th:text="${productSold.customer.name}">Onions</td>
+                            <td th:text="${productSold.product.name}">Onions</td>
                         </tr>
                         </tbody>
                         <tfoot>

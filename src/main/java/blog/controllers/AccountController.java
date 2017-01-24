@@ -28,6 +28,13 @@ public class AccountController {
         return "users/login";
     }
 
+    @RequestMapping("/users/logout")
+    public String showLoginForm(HttpSession session) {
+        session.setAttribute("name", null);
+        session.setAttribute("loged", false);
+        return "redirect:/users/login";
+    }
+
     @RequestMapping(value = "/users/login", method = RequestMethod.POST)
     public String showLoginForm(@Valid LoginForm loginForm, BindingResult bindingResult, HttpSession session) {
         if (bindingResult.hasErrors()) {

@@ -30,6 +30,7 @@ public class ProductSoldServiceImpl implements ProductSoldService {
 
 	@Override
 	public ProductSold create(ProductSold productSold) {
+
 		return productSoldRepository.save(productSold);
 	}
 

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head"></head>
+
+<body class="hold-transition skin-blue fixed sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <header class="main-header" th:replace="layout :: site-header"></header>
+
+    <aside class="main-sidebar" th:replace="layout :: site-menu"></aside>v>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Vítejte ve systému pro správu prodaných produktů
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Layout</a></li>
+                <li class="active">Fixed</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Kontroly na prodaných produktech</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+
+
+                <form role="form" method="post" th:object="${contOnProdSoldForm}">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="checks">checks:</label>
+                            <select id="checks" class="form-control" th:field="*{checks}">
+                                <option value="">Vyberte Produkt</option>
+                                <option th:each="p : ${checksatr}" th:value="${p.id}"  th:text="${p.name}"></option>
+                            </select>
+                            <span class="formError" th:if="${#fields.hasErrors('checks')}"
+                                  th:errors="*{checks}">Neplatně uvedený produkt.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="productSolds">productSolds:</label>
+                            <select id="productSolds" class="form-control" th:field="*{productSolds}">
+                                <option value="">Vyberte Produkt</option>
+                                <option th:each="p : ${productSoldsatr}" th:value="${p.id}"  th:text="${p.serialNumber}"></option>
+                            </select>
+                            <span class="formError" th:if="${#fields.hasErrors('productSolds')}"
+                                  th:errors="*{productSolds}">Neplatně uvedený produkt.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkHistories">checkHistories:</label>
+                            <select id="checkHistories" class="form-control" th:field="*{checkHistories}">
+                                <option value="">Vyberte Produkt</option>
+                                <option th:each="p : ${checkHistoriesatr}" th:value="${p.id}"  th:text="${p.status}"></option>
+                            </select>
+                            <span class="formError" th:if="${#fields.hasErrors('checkHistories')}"
+                                  th:errors="*{checkHistories}">Neplatně uvedený produkt.</span>
+                        </div>
+                    </div>
+
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                     <button type="submit" class="btn btn-primary">Uložit</button>
+                </div>
+                </form>
+            </div>
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Hover Data Table</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>Kontrola</th>
+                            <th>Historie</th>
+                            <th>Prodaný produkt</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="c : ${contOnProdSolds}">
+                            <td th:text="${c.check.name}">Onions</td>
+                            <td th:text="${c.checkHistory.status}">Onions</td>
+                            <td th:text="${c.productSold.serialNumber}">Onions</td>
+
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>IČO</th>
+                            <th>DIČ</th>
+                            <th>Společnost</th>
+
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <footer class="main-footer" th:replace="layout :: site-footer"></footer>
+</div>
+
+<!-- page script -->
+<script>
+    $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+</script>
+</body>
+
+</html>
+

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * Created by marti on 04.12.2016.
@@ -41,7 +42,11 @@ public class UserServiceJpaImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Long id) { userRepository.delete(id);
+    public void deleteById(Long id) { userRepository.delete(id); }
 
+
+    @Override
+    public User findByName(String username) {
+        return userRepository.findByName(username);
     }
 }

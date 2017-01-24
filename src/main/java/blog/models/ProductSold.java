@@ -41,6 +41,10 @@ public class ProductSold {
     public ProductSold() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getSerialNumber() {
         return serialNumber;
     }

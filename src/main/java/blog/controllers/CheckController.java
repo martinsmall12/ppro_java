@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -26,11 +27,17 @@ public class CheckController {
 
 
     @RequestMapping("/check")
-    public String showCheckForm(CheckForm checkForm, Model model) {
+    public String showCheckForm(CheckForm checkForm, Model model, HttpSession session) {
         List<Check> checks = checkService.findAll();
         model.addAttribute("checks", checks);
 
-        return "check/index";
+        if (session.getAttribute("name") == null) {
+            return "redirect:/users/login";
+        } else {
+            return "check/index";
+        }
+
+
     }
 
     @RequestMapping(value = "/check", method = RequestMethod.POST)

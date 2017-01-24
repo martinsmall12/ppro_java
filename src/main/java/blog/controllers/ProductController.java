@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -27,11 +28,16 @@ public class ProductController {
 
 
     @RequestMapping("/products")
-    public String showProductForm(ProductForm productForm, Model model) {
+    public String showProductForm(ProductForm productForm, Model model, HttpSession session) {
         List<Product> products = productService.findAll();
         model.addAttribute("products", products);
 
-        return "products/index";
+        if (session.getAttribute("name") == null) {
+            return "redirect:/users/login";
+        } else {
+            return "products/index";
+        }
+
     }
 
     @RequestMapping(value = "/products", method = RequestMethod.POST)

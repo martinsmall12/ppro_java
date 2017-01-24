@@ -42,6 +42,6 @@ public class RegisterController {
 
         // Login successful
         notificationService.addInfoMessage("Registrace proběhla v pořádku!");
-        return "redirect:/";
+        return "redirect:/users/login";
     }
 }

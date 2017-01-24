@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -25,9 +26,15 @@ public class CheckHistoryController {
     private CheckHistoryService checkHistoryService;
 
     @RequestMapping("/checkHistory")
-    public String showCheckHistoryForm(CheckHistoryForm checkHistoryForm) {
+    public String showCheckHistoryForm(CheckHistoryForm checkHistoryForm, HttpSession session) {
 
-        return "checkHistory/index";
+        if (session.getAttribute("name") == null) {
+            return "redirect:/users/login";
+        } else {
+            return "checkHistory/index";
+        }
+
+
     }
 
     @RequestMapping(value = "/checkHistory", method = RequestMethod.POST)

@@ -50,6 +50,10 @@ public class CheckHistory {
     public CheckHistory() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getStatus() {
         return status;
     }

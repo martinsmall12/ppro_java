@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -35,10 +36,8 @@ public class ProductSoldController {
     private CustomerService customerService;
 
 
-
-
     @RequestMapping("/productSold")
-    public String showProductSoldForm(ProductSoldForm productSoldForm, Model model) {
+    public String showProductSoldForm(ProductSoldForm productSoldForm, Model model, HttpSession session) {
 
         List<Product> products = productService.findAll();
         model.addAttribute("productsatr", products);
@@ -49,7 +48,13 @@ public class ProductSoldController {
         List<ProductSold> productsSold = productSoldService.findAll();
         model.addAttribute("productsSold", productsSold);
 
-        return "productSold/index";
+        if (session.getAttribute("name") == null) {
+            return "redirect:/users/login";
+        } else {
+            return "productSold/index";
+        }
+
+
     }
 
     @RequestMapping(value = "/productSold", method = RequestMethod.POST)
@@ -62,17 +67,18 @@ public class ProductSoldController {
         }
 
         //Long id =  productService.findById() bindingResult.getTarget();
-        Product product = productService.findById(1l);
-        Customer customer =  customerService.findById(1l);
+
+        Product product = productService.findById(productSoldForm.getProducts().get(0).getId());
+        Customer customer =  customerService.findById(productSoldForm.getCustomers().get(0).getId());
 
         productSoldService.create(
                 new ProductSold(productSoldForm.getSerialNumber(),
                                 productSoldForm.getDateOfSale(),
-                                customer,
-                                product));
+                                productSoldForm.getCustomers().get(0),
+                                productSoldForm.getProducts().get(0)));
 
 
         notificationService.addInfoMessage("Prodaný produkt vytvořen!");
-        return "redirect:/";
+        return "productSold/index";
     }
 }
